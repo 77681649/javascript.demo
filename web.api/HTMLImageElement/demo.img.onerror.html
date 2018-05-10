@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>demo.img.onerror</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div>
+    <img id="img1" src="./pic.jpg" alt="pic1" />
+    <img id="img2" src="./pic.js" alt="pic2" />
+    <img id="img3" src="./pic.xx" alt="pic3" />
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('img1').onload = function (code) {
+        console.log('pic1 loaded', arguments)
+      }
+
+      document.getElementById('img2').onload = function (code) {
+        console.log('pic2 loaded', arguments)
+      }
+
+      document.getElementById('img3').onload = function (code) {
+        console.log('pic3 loaded', arguments)
+      }
+
+      document.getElementById('img1').onerror = function (code) {
+        console.log('pic1 error', arguments)
+      }
+
+      document.getElementById('img2').onerror = function (code) {
+        console.log('pic2 error', arguments)
+      }
+
+      document.getElementById('img3').onerror = function (code) {
+        console.log('pic3 error', arguments)
+      }
+    })
+  </script>
+</body>
+
+</html>

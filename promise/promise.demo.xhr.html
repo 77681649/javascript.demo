@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>promise.demo.xhr</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./es6.promise.js"></script>
+</head>
+
+<body>
+  <div>
+    <input id="location" />
+    <button id="query">查询位置</button>
+  </div>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const $txtInput = document.getElementById('location')
+    const $btn = document.getElementById('query')
+
+    $btn.addEventListener('click', function () {
+      const ip = $txtInput.value
+
+      fetch(`http://int.dpool.sina.com.cn/iplookup/iplookup.php?ip=${ip}&format=json`)
+        .then(function (value) {
+          console.log(value)
+        })
+        .catch(function (error) {
+          alert('发生错误', error.message)
+        })
+    })
+
+    function fetch(url) {
+      debugger
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest()
+
+        xhr.open('get', url, true)
+        xhr.onreadystatechange = function () {
+          if (xhr.status === 200) {
+            if (xhr.readyState === 4) {
+              resolve(xhr.response)
+            }
+          }
+        }
+        xhr.onerror = function (err) {
+          reject(err)
+        }
+        xhr.send(null)
+      })
+    }
+
+
+    function fetchSina(ip) {
+      return request(`http://int.dpool.sina.com.cn/iplookup/iplookup.php?ip=${ip}&format=json`).then(({ body }) => {
+        return `${body.country},${body.province},${body.city}`
+      })
+    }
+  })
+</script>
+
+</html>

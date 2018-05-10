@@ -1,0 +1,28 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width;user-scalable=no;initial-scale=1">
+  <title>Demo</title>
+</head>
+
+<body>
+  <div>Hello requirejs</div>
+</body>
+<script src="static/require.js"></script>
+<script>
+  requirejs.config({
+    paths: {
+      '$': 'jquery.js',
+      'main': 'main.js'
+    }
+  })
+
+  require(['$', 'main'], function ($, main) {
+    console.log($)
+    console.log(main)
+    console.log('ok')
+  })
+</script>
+
+</html>
