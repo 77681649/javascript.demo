@@ -49,7 +49,7 @@ const window = {};
       that.status = status = STATUS_FULFILLED;
       that.value = value = result;
       handlers.forEach(execCallback); // 执行积压的回调函数
-      handlers = [];
+      handlers = [];                  // 回调只触发一次
 
       return value;
     });
@@ -58,7 +58,7 @@ const window = {};
       that.status = status = STATUS_REJECTED;
       that.value = value = reason;
       handlers.forEach(execCallback); // 执行积压的回调函数
-      handlers = [];
+      handlers = [];                  // 回调只触发一次
 
       return value;
     });
