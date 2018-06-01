@@ -1,0 +1,68 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>complete</title>
+</head>
+
+<body>
+  <input id="search" type="text" placeholder="Please input">
+  <div id="container"></div>
+</body>
+<script src="../demo.underscore.js"></script>
+<script>
+  const $ = selector => document.querySelectorAll(selector)
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const $search = $('#search')[0]
+    const $container = $('#container')[0]
+
+    $search.addEventListener('input', _.debounce(autocomplete, 500))
+
+    function autocomplete() {
+      const value = $search.value
+      fetch(value).then(showAutocompleteList)
+    }
+
+    function fetch(value) {
+      return new Promise((resolve, reject) => {
+        setTimeout(
+          function () {
+            const data = [
+              'Apple',
+              'Banana',
+              'Watermelon',
+              'Mongo',
+              'Pear',
+              'Peach'
+            ]
+
+            resolve(data.map(it => it.toLowerCase()).filter(d => ~d.indexOf(value)))
+          },
+          100
+        )
+      })
+    }
+
+    function showAutocompleteList(data) {
+      const ul = document.createElement('UL')
+
+      data.forEach(it => {
+        const li = document.createElement('LI')
+        li.innerText = it
+
+        ul.appendChild(li)
+      })
+
+      while ($container.childNodes.length) {
+        $container.removeChild($container.childNodes[0])
+      }
+
+      $container.appendChild(ul)
+    }
+  })
+</script>
+
+</html>
