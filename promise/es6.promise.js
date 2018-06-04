@@ -1,6 +1,5 @@
 /**
  * 基于Promise/A+
- * @param {} handler
  */
 
 const window = {};
