@@ -11,19 +11,34 @@ function fetchUserId() {
 function fetchUserName() {
   return new Promise((resolve, reject) => {
     setTimeout(function() {
-      reject("tyo");
+      resolve("tyo");
     }, 2000);
   });
 }
 
 function* fetchUser() {
-  try {
-    var userId = yield fetchUserId();
-    var userName = yield fetchUserName();
-    return { userId, userName };
-  } catch (err) {
-    return {};
-  }
+  // 串行
+  var userId = yield fetchUserId();
+  var userName = yield fetchUserName();
+
+  return { userId, userName };
+}
+
+function* fetchUserParallel1() {
+  // 并发
+  var p1 = fetchUserId();
+  var p2 = fetchUserName();
+
+  var userId = yield p1;
+  var userName = yield p2;
+
+  return { userId, userName };
+}
+
+function* fetchUserParallel2() {
+  var [userId, userName] = yield Promise.all([fetchUserId(), fetchUserName()]);
+
+  return { userId, userName };
 }
 
 function* getUser() {
@@ -41,9 +56,7 @@ function getUserName() {
   return "tyo";
 }
 
-co(fetchUser)()
-  .then(user => console.log(user))
-  .catch(err => {
-    console.log("error", err);
-  });
-co(getUser)().then(user => console.log(user));
+co(fetchUser)().then(user => console.log("serie", user));
+co(fetchUserParallel1)().then(user => console.log("parallel", user));
+co(fetchUserParallel2)().then(user => console.log("parallel", user));
+co(getUser)().then(user => console.log("sync", user));

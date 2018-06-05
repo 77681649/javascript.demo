@@ -1,4 +1,8 @@
 function co(generatorFunction) {
+  if (!isGenerator(generatorFunction)) {
+    
+  }
+
   return function(...args) {
     var gen = generatorFunction(...args);
 
@@ -17,9 +21,9 @@ function co(generatorFunction) {
       }
 
       function next(value) {
-        isPromise(value) 
-          ? value.then(_next).catch(onRejected)   // 等到Promise resolve之后,继续执行
-          : _next(value);                         // 非Promise,直接继续执行
+        isPromise(value)
+          ? value.then(_next).catch(onRejected) // 等到Promise resolve之后,继续执行
+          : _next(value); // 非Promise,直接继续执行
       }
 
       function _next(value) {
@@ -40,7 +44,15 @@ function co(generatorFunction) {
 }
 
 function isPromise(v) {
-  return v && typeof v === "object" && typeof v.then === "function";
+  return v && typeof v === "object" && isFunction(v.then);
+}
+
+function isGenerator(v) {
+  return isFunction(v) && isFunction(v.then) && isFunction(v.throw);
+}
+
+function isFunction(v) {
+  return typeof v === "function";
 }
 
 module.exports = co;
