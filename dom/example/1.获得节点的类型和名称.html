@@ -1,0 +1,21 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>1.获得节点的类型和名称</title>
+</head>
+
+<body>
+  <div id="div" style="white-space: pre-line"></div>
+</body>
+<script>
+  let $div = document.getElementById('div')
+  let props = ['nodeType', 'nodeName', 'tagName', 'localName', 'prefix']
+  let text = props.map(p => `${p}: ${$div[p]}`).join('\r\n')
+
+  $div.textContent = text
+</script>
+
+</html>

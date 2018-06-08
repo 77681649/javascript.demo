@@ -1,0 +1,33 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>2.获得节点文本</title>
+</head>
+
+<body>
+  <div id="main">
+    list:
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </div>
+  <div id="message"></div>
+  <script>
+    let $div = document.getElementById('main')
+    let $message = document.getElementById('message')
+    let props = ['innerHTML', 'outerHTML', 'textContent', 'innerText', 'outerText']
+    let message = props.map(p => {
+      return `${p}: ${$div[p]}`
+    }).join('')
+
+    $message.innerText = message
+  </script>
+</body>
+
+</html>
