@@ -1,0 +1,73 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>遍历元素</title>
+</head>
+
+<body>
+  查看健康表
+  <fieldset>
+    <legend>健康表</legend>
+    <div>
+      <dl>
+        <dt>姓名</dt>
+        <dd>tyosssss</dd>
+        <dt>体重</dt>
+        <dd>100KG</dd>
+        <dt>身高</dt>
+        <dd>180cm</dd>
+      </dl>
+    </div>
+  </fieldset>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var root = document;
+      var names = traverse(root, { onlyElement: true });
+
+      createMessagePanel(names.join('\r\n'))
+
+      function traverse(root, options = {
+        onlyElement: true
+      }) {
+        var indent = '';
+        var names = [];
+
+        (function run(root, indent) {
+          if (root) {
+            let children = options.onlyElement ? root.children : root.childNodes
+            let name = root.nodeType === Node.TEXT_NODE 
+              ? '#text: ' + root.textContent
+              : root.tagName
+
+            names.push(indent + name)
+
+            if (children) {
+              Array.from(children).forEach(n => {
+                run(n, indent + '  ')
+              })
+            }
+          }
+        })(root, indent)
+
+        return names
+      }
+
+      function createMessagePanel(message) {
+        var messagePanel = document.createElement('div')
+
+        messagePanel.style.border = 'solid 1px black'
+        messagePanel.style.padding = '10px'
+        messagePanel.style.marginTop = '10px'
+        messagePanel.style.whiteSpace = 'pre'
+        messagePanel.textContent = message
+
+        document.getElementsByTagName('body')[0].appendChild(messagePanel)
+      }
+    })
+  </script>
+</body>
+
+</html>
