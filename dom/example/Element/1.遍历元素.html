@@ -9,7 +9,7 @@
 
 <body>
   查看健康表
-  <fieldset>
+  <fieldset data-html>
     <legend>健康表</legend>
     <div>
       <dl>
@@ -22,7 +22,7 @@
       </dl>
     </div>
   </fieldset>
-  <script>
+  <script data-js>
     document.addEventListener('DOMContentLoaded', function () {
       var root = document;
       var names = traverse(root, { onlyElement: true });
