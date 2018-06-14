@@ -1,10 +1,5 @@
 !(function(global, factory) {
-  if (
-    module &&
-    module.exports &&
-    typeof module === "object" &&
-    typeof module.exports === "object"
-  ) {
+  if (typeof module === "object" && typeof module.exports === "object") {
     module.exports = factory(global);
   } else if (typeof define === "function" && define.amd) {
     define(factory(global));
@@ -32,6 +27,8 @@
     return s[0].toUpperCase() + s.substr(1);
   }
 
+  let miti = {};
+
   /**
    * 工厂函数
    *
@@ -48,20 +45,52 @@
    */
   miti.init = function(selector, context) {
     if (isString(selector)) return initFromString(selector, context);
+    else if (isFunction(selector)) return initFromFunction(selector);
+    // else if (isMiti(selector)) return
   };
 
-  function initFromString(selector, context) {}
+  miti.isMiti = function(o) {
+    return o instanceof miti.Miti;
+  };
+
+  function initFromString(selector, context) {
+    selector = selector.trim();
+
+    if (isHtmlFrgament(selector)) {
+      //
+    } else if (context != null) {
+      return $(context).find(selector);
+    } else {
+      return $(miti.qsa(element, selector));
+    }
+  }
+
+  function initFromFunction(onDOMContentLoaded) {
+    document.addEventListener("DOMContentLoaded", onDOMContentLoaded);
+  }
+
+  miti.qsa = function(element, selector) {
+    return element.querySelectorAll(selector);
+  };
 
   /**
    *
    *
    */
-  function Miti(selector, context) {}
+  function Miti(selector, context) {
+    this.selector = selector;
+  }
 
   /**
    * 原型对象
    */
-  $.fn = {};
+  $.fn = {
+    ready(onDOMContentLoaded) {
+      document.addEventListener("DOMContentLoaded", onDOMContentLoaded);
+    },
+
+    find(selector) {}
+  };
 
   function getAncestor(obj) {
     let ancestors = [];
@@ -96,7 +125,8 @@
       .join("\r\n");
   }
 
-  miti.Miti.properties = Miti.properties = $.fn;
+  // miti.Miti = 
+  // miti.Miti.prototype = Miti.prototype = $.fn;
 
   $.miti = miti;
 

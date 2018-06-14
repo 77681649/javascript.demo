@@ -1,0 +1,23 @@
+let ABService = 
+
+function wrapABTest(WrapedComponent){
+  class ABTestComponent extends React.Component {
+    render(){   
+      let abCode = Crocodile.getABTest(this.props.plan , this.props.stragery)
+      return <WrapedComponent abCode={abCode}  />
+    }
+  }
+}
+
+let {plan , stragery } = this.props
+
+
+const WrappedABList = wrapABTest(<Button />)
+
+function Button(props){
+  render(){
+    this.props.abCode
+  }
+}
+
+<WrappedABList plan="XX" stragery="XX"  />

@@ -1,0 +1,41 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Node.prototype.contains</title>
+</head>
+
+<body>
+  <div class="main" data-html>
+    <ul id="list">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
+
+  <fieldset>
+    <legend>contains</legend>
+    <pre id="message"></pre>
+  </fieldset>
+
+  <script src="/miti.js"></script>
+  <script data-js>
+    $(function () {
+      let $list = document.querySelector('#list')
+      let $message = document.querySelector('#message')
+      let $li = document.querySelector('li')
+
+      let message = []
+      message.push(`ul.parent: ${$list.contains($list.parentElement)}`)
+      message.push(`ul>li: ${$list.contains($li)}`)
+      message.push(`ul>li>[text:1]: ${$list.contains($li.firstChild)}`)
+
+      $message.innerHTML = message.join('\n')
+    })
+  </script>
+</body>
+
+</html>

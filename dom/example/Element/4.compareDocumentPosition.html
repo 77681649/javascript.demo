@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Node.prototype.compareDocumentPosition</title>
+</head>
+
+<body>
+  <div class="main" data-html>
+    <ul id="list">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
+
+  <fieldset>
+    <legend>contains</legend>
+    <pre id="message"></pre>
+  </fieldset>
+
+  <script src="/miti.js"></script>
+  <script data-js>
+    $(function () {
+      let $list = document.querySelector('#list')
+      let $message = document.querySelector('#message')
+      let $base = document.querySelector('li:nth-child(2)')
+      let $previousSibling = $base.previousElementSibling
+      let $nextSibiling = $base.nextElementSibling
+      let $anchor = document.querySelector('body')
+      let $grandchild = $base.childNodes[0]
+
+      let message = []
+      message.push(`previousSibling: ${$base.compareDocumentPosition($previousSibling)}`)
+      message.push(`nextSibiling: ${$base.compareDocumentPosition($nextSibiling)}`)
+      message.push(`anchor: ${$base.compareDocumentPosition($anchor)}`)
+      message.push(`grandchild: ${$base.compareDocumentPosition($grandchild)}`)
+      // message.push(`ul>li>[text:1]: ${$list.contains($li.firstChild)}`)
+
+      $message.innerHTML = message.join('\n')
+    })
+  </script>
+</body>
+
+</html>
