@@ -1,0 +1,31 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>逐帧动画</title>
+  <style>
+    .main {
+      font-size: 24px;
+    }
+
+    .highlight {
+      animation: blink-smooth 1s 3 alternate;
+    }
+
+    @keyframes blink-smooth {
+      50% {
+        color: transparent
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main highlight">
+    Aha blink.
+  </div>
+</body>
+
+</html>

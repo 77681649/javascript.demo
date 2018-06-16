@@ -1,0 +1,206 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>align-items</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    h1{
+      text-align: center;
+    }
+
+    .main {
+      margin: 40px auto;
+      width: 80%;
+    }
+
+    .container {
+      padding: 20px;
+      height: 400px;
+      background: #6CBA6F;
+    }
+
+    .flex {
+      display: box;
+      display: -webkit-flex;
+      display: flex;
+    }
+
+    .container-item {
+      flex: 1;
+      width:50%;
+      margin-left:10px;
+      border:1px solid #000;
+    }
+
+    .item {
+      margin: 10px;
+      width: 100px;
+      height: 100px;
+      
+      color:white;
+      background: cornflowerblue;
+      
+      font-size:24px;
+      text-align: center;
+      line-height: 100px;
+    }
+    
+    .stretch-item .item{
+      height: auto;
+    }
+
+    .code-box {
+      /* 合并,换行,字符换行 */
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <h1>align-content 示例</h1>
+ 
+    <div class="container flex">
+      <div class="container-item flex" style="flex-wrap: wrap;align-content: flex-start;">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+      </div>
+      <div class="container-item code-box">
+        控制flex-line在cross-axis上的对齐方式: 
+        第一行flex-line从cross-main开始排序, flex-line之间没有间隔
+
+        flex { 
+          display: flex; 
+          flex-wrap: wrap; 
+          align-content: flex-start;
+        }
+      </div>
+    </div>
+
+    <div class="container flex">
+      <div class="container-item flex" style="flex-wrap: wrap;align-content: flex-end;">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+      </div>
+      <div class="container-item code-box">
+        控制flex-line在cross-axis上的对齐方式: 
+        最后一个行flex-line从cross-end开始排序, flex-line之间没有间隔
+
+        flex { 
+          display: flex; 
+          flex-wrap: wrap; 
+          align-content: flex-end;
+        }
+      </div>
+    </div>
+
+    <div class="container flex">
+      <div class="container-item flex" style="flex-wrap: wrap;align-content: center;">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+      </div>
+      <div class="container-item code-box">
+        控制flex-line在cross-axis上的对齐方式: 
+        flex-line从cross-axis的中间开始堆叠 , flex-line行到cross-start和cross-end两边的距离相等
+
+        flex { 
+          display: flex; 
+          flex-wrap: wrap; 
+          align-content: center;
+        }
+      </div>
+    </div>
+
+    <div class="container flex">
+      <div class="container-item flex" style="flex-wrap: wrap;align-content: space-between;">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+      </div>
+      <div class="container-item code-box">
+        控制flex-line在cross-axis上的对齐方式: 
+        flex-line之间间隔相等, flex-line到cross-start,cross-end没有间隔
+
+        flex { 
+          display: flex; 
+          flex-wrap: wrap; 
+          align-content: space-between;
+        }
+      </div>
+    </div>
+
+    <div class="container flex">
+      <div class="container-item flex" style="flex-wrap: wrap;align-content: space-around;">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+      </div>
+      <div class="container-item code-box">
+        控制flex-line在cross-axis上的对齐方式: 
+        flex-line两端的间隔相等
+
+        flex { 
+          display: flex; 
+          flex-wrap: wrap; 
+          align-content: space-around;
+        }
+      </div>
+    </div>
+
+    <div class="container flex">
+      <div class="container-item flex stretch-item" style="flex-wrap: wrap;align-content: stretch;">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+      </div>
+      <div class="container-item code-box">
+        
+        flex { 
+          display: flex; 
+          flex-wrap: wrap; 
+          align-content: stretch;
+        }
+      </div>
+    </div>
+</body>
+
+</html>

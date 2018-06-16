@@ -1,0 +1,77 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      background: black;
+    }
+
+    .lights {
+      display: box;
+      display: -webkit-flex;
+      display: flex;
+    }
+
+    .light {
+      width: 10px;
+      height: 10px;
+      border-radius: 50% 50%;
+
+      box-shadow: 0 0 6px rgba(255, 255, 255, 1);
+    }
+
+    .lightgreen {
+      background: rgb(12, 230, 213);
+    }
+
+    .blue {
+      background: rgb(15, 184, 241);
+    }
+
+    .pink {
+      background: rgb(244, 78, 222);
+    }
+
+    .yellow {
+      background: rgb(248, 252, 123)
+    }
+  </style>
+</head>
+
+<body>
+  <div class="lights">
+    <div class="light pink"></div>
+    <div class="light yellow"></div>
+    <div class="light lightgreen"></div>
+    <div class="light blue"></div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let $lights = document.querySelectorAll('.light')
+      let orders = []
+
+      for (let i = 0; i < $lights.length; i++) {
+        orders.push(i)
+      }
+
+      window.setInterval(function () {
+        runHorseLight()
+      }, 200)
+
+      function runHorseLight() {
+        orders.unshift(orders.pop())
+
+        $lights.forEach(function ($light, index) {
+          $light.style.order = orders[index];
+        })
+      }
+
+    });
+  </script>
+</body>
+
+</html>

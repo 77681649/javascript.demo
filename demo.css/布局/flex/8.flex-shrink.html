@@ -1,0 +1,145 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>align-items</title>
+  <style>
+    * {
+      box-sizing: content-box;
+    }
+
+    h1{
+      text-align: center;
+    }
+
+    .main {
+      margin: 40px auto;
+      width: 80%;
+    }
+
+    .container {
+      padding: 20px;
+      height: 400px;
+      background: #6CBA6F;
+    }
+
+    .flex {
+      display: box;
+      display: -webkit-flex;
+      display: flex;
+    }
+
+    .container-item {
+      flex: 1;
+      width:50%;
+      margin-left:10px;
+      border:solid 1px black;
+    }
+    
+    .container>.container-item:first-child{
+      max-width:300px;
+    }
+    
+    .item {
+      width: 100px;
+      height: 100px;
+      
+      color:white;
+      background: cornflowerblue;
+      
+      font-size:14px;
+      text-align: center;
+      line-height: 100px;
+    }
+
+    .item:nth-child(1){
+      background:crimson;
+    }
+
+    .item:nth-child(2){
+      background:blueviolet;
+    }
+
+    .item:nth-child(3){
+      background:goldenrod;
+    }
+    
+    .item:nth-child(4){
+      background:chocolate;
+    }
+    
+    .stretch-item .item{
+      height: auto;
+    }
+
+    .code-box {
+      /* 合并,换行,字符换行 */
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <h1>flex-shrink 示例</h1>
+ 
+    <div class="container flex">
+      <div class="container-item flex">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+      </div>
+      <div class="container-item code-box">
+        默认 flex-shrink: 1
+
+        说明:
+        flex-container.width = 300px;
+        flex-item.width = 100px;
+
+        容器宽度 < 所有子元素的宽度
+          beyond_width = 300 - 4 * 100 = 100px
+
+          flex_item_shrink_width = 100 * (1 / (1+1+1+1)) = 25px
+          flex_item_actual_width = 100 - 1 * 25 = 75px
+      </div>
+    </div>
+
+    <div class="container flex">
+      <div class="container-item flex">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item" style="flex-shrink:2">4</div>
+      </div>
+      <div class="container-item code-box">
+        flex-item[4] flex-shrink: 2
+
+        说明:
+        flex-container.width = 300px;
+        flex-item.width = 100px;
+
+        容器宽度 < 所有子元素的宽度
+          beyond_width = 300 - 4 * 100 = 100px
+
+          flex_item_shrink_width = 100 * (1 / (1+1+1+2)) = 20px
+
+          flex_item_actual_width[1,2,3] = 100 - 1 * 20 = 80px
+          flex_item_actual_width[4] = 100 - 2 * 20 = 60px
+      </div>
+    </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',function(){
+      let $items = document.querySelectorAll('.item')
+
+      $items.forEach(function(item){
+        item.innerText = `${item.offsetWidth}px`
+      })
+    })
+  </script>
+</body>
+
+</html>

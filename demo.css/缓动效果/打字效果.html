@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>打字效果</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main {
+      font-family: Consolas, Monaco, monospace;
+    }
+
+    .typing {
+      display: inline-block;
+      width: calc(15 * 1ch);
+      white-space: nowrap;
+      overflow: hidden;
+
+      border-right: solid 1px black;
+      animation: typing 6s steps(15), blink-cursor 1s steps(1) infinite;
+    }
+
+    .blink-cursor {
+      
+    }
+
+    @keyframes typing {
+      from {
+        width: 0
+      }
+    }
+
+    @keyframes blink-cursor {
+      50% {
+        border-right-color: transparent;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main typing blink-cursor">
+    CSS is awesome!
+  </div>
+</body>
+
+</html>

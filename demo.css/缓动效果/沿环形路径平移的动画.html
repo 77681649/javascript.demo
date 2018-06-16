@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>沿环形路径平移的动画</title>
+  <style>
+    .main {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      border-radius: 50% 50%;
+      background: white;
+
+      animation: spin 6s infinite linear;
+      transform: rotateZ(1turn);
+      transform-origin: 50% 50%;
+    }
+
+    .circle {
+      position: absolute;
+      top: 20px;
+      left: calc(50% - 25px);
+
+      width: 50px;
+      height: 50px;
+      border-radius: 50% 50%;
+      color: white;
+      background-color: thistle;
+      text-align: center;
+      line-height: 50px;
+      
+      animation: spin-reverse 6s infinite linear;   
+      transform: rotateZ(1turn);
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotateZ(0deg)
+      }
+    }
+
+    /* 抵消内部圆圈的旋转 */
+
+    @keyframes spin-reverse {
+      to {
+        transform: rotateZ(0deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <div class="circle">C</div>
+  </div>
+</body>
+
+</html>

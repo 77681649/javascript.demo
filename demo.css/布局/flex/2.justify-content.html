@@ -1,0 +1,130 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>justify-content</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    h1{
+      text-align: center;
+    }
+
+    .main {
+      margin: 40px auto;
+      width: 80%;
+    }
+
+    .container {
+      padding: 20px;
+      height: 400px;
+      background: #6CBA6F;
+    }
+
+    .flex {
+      display: box;
+      display: -webkit-flex;
+      display: flex;
+    }
+
+    .container-item {
+      flex: 1;
+      margin-left:10px;
+    }
+
+    .item {
+      margin: 10px;
+      width: 100px;
+      height: 100px;
+      
+      color:white;
+      background: cornflowerblue;
+      
+      font-size:24px;
+      text-align: center;
+      line-height: 100px;
+    }
+
+    .code-box {
+      border:1px solid #000;
+      /* 合并,换行,字符换行 */
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <h1>justify-content 示例</h1>
+    <div class="container flex">
+      <div class="container-item flex" style="justify-content: flex-start">
+        <div class="item">1</div>
+        <div class="item">2</div>
+      </div>
+      <div class="container-item code-box">
+        flex { 
+          display: flex; 
+          justify-content: flex-start; 
+        }
+      </div>
+    </div>
+
+    <div class="container flex">
+      <div class="container-item flex" style="justify-content: flex-end">
+        <div class="item">1</div>
+        <div class="item">2</div>
+      </div>
+      <div class="container-item code-box">
+        flex { 
+          display: flex; 
+          justify-content: flex-end; 
+        }
+      </div>
+    </div>
+
+    <div class="container flex">
+      <div class="container-item flex" style="justify-content: center">
+        <div class="item">1</div>
+        <div class="item">2</div>
+      </div>
+      <div class="container-item code-box">
+        flex { 
+          display: flex; 
+          justify-content: center; 
+        }
+      </div>
+    </div>
+
+    <div class="container flex">
+      <div class="container-item flex" style="justify-content: space-between">
+        <div class="item">1</div>
+        <div class="item">2</div>
+      </div>
+      <div class="container-item code-box">
+        flex { 
+          display: flex; 
+          justify-content: space-between; 
+        }
+      </div>
+    </div>
+
+    <div class="container flex">
+      <div class="container-item flex" style="justify-content: space-around">
+        <div class="item">1</div>
+        <div class="item">2</div>
+      </div>
+      <div class="container-item code-box">
+        flex { 
+          display: flex; 
+          justify-content: space-around; 
+        }
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
